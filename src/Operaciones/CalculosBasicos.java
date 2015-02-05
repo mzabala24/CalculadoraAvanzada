@@ -36,10 +36,9 @@ public class CalculosBasicos {
    public int potenciacion(int a, int b){
        int i=1;
        int acumula=1;
-       while(i==b){
-          acumula=acumula*a; 
-       i++;
-       }
+       for (int j = 0; j < b; j++) {
+               acumula=acumula*a;
+           }
        return acumula;
    }
    

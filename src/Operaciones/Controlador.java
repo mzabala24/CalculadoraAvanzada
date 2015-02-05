@@ -29,7 +29,7 @@ public class Controlador {
     
     public void prioridad(){
         
-        String ejemplo="2+2*(2*2*(2+9)/6)+9*8";
+        String ejemplo="2+2*(2*2*(8+9)/6)+9*8";
         
         char operaciones[] = new char[7];
         operaciones[0]='(';
