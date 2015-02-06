@@ -10,7 +10,7 @@ package Operaciones;
  *
  * @author Administrator
  */
-public class Analizador {
+public class Sintaxis {
     
     //Retira los espacios de la expresión
     private String sinEspacios(String expresion){

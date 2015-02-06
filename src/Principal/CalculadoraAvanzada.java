@@ -6,6 +6,8 @@
 
 package Principal;
 
+import Operaciones.Expresion;
+
 
 
 /**
@@ -20,7 +22,13 @@ public class CalculadoraAvanzada {
     public static void main(String[] args) {
         // TODO code application logic here
         
-      
+        Expresion evaluador = new Expresion();
+        String expresion;
+        double valor;
+        expresion="3.398+1.609/5.478-3.529+7^3*4.248";
+        evaluador.analizar(expresion);
+        valor=evaluador.evaluar();
+        System.out.println(valor);
     }
     
 }
