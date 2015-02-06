@@ -6,7 +6,7 @@
 
 package Principal;
 
-import Operaciones.Controlador;
+
 
 /**
  *
@@ -20,8 +20,7 @@ public class CalculadoraAvanzada {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Controlador c = new Controlador();
-        c.prioridad();
+      
     }
     
 }
