@@ -24,7 +24,7 @@ public class CalculadoraAvanzada {
         Expresion evaluador = new Expresion();
         String expresion;
         Double valor;
-        expresion="(5.940-7.378)/x+9.756*5.43+9.125/x";
+        expresion="((5+5)*9/6)^2";
         evaluador.analizar(expresion);
         evaluador.darValorVariable('x', 17.912);
         valor=evaluador.evaluar();
