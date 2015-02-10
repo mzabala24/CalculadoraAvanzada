@@ -21,14 +21,17 @@ public class CalculadoraAvanzada {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
         Expresion evaluador = new Expresion();
         String expresion;
-        double valor;
-        expresion="3.398+1.609/5.478-3.529+7^3*4.248";
+        Double valor;
+        expresion="(5.940-7.378)/x+9.756*5.43+9.125/x";
         evaluador.analizar(expresion);
+        evaluador.darValorVariable('x', 17.912);
         valor=evaluador.evaluar();
-        System.out.println(valor);
+        if(valor.isNaN())
+        System.out.println("Error Matematico");
+        else
+            System.out.println(valor);
     }
     
 }
