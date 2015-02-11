@@ -124,7 +124,7 @@ public class Expresion {
                     {
                         if(letra==listaFunciones.charAt(j)
                                 && letra2==listaFunciones.charAt(j+1)
-                                && letra3==listaFunciones.charAt(j+3))
+                                && letra3==listaFunciones.charAt(j+2))
                             break;
                         funcionDetectada++;
                     }
