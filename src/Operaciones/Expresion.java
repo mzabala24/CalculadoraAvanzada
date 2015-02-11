@@ -45,7 +45,7 @@ public class Expresion {
      * de la expresion algebraica ya dividida
      */
     private ArrayList<Elemento> elementos = new ArrayList<Elemento>();
-    
+    private ArrayList<String> procedimiento = new ArrayList<String>();
     /**
      * Arreglo unidemensional con las 26 variables diferentes
      */
@@ -310,9 +310,13 @@ public class Expresion {
                 
                elementos.get(i).setEvaluado(true);
                elementos.get(sigue).setEvaluado(true);
-               System.out.println(elementos.get(antes).getAcumula());
+               
+               procedimiento.add(""+elementos.get(antes).getAcumula());
+               procedimiento.add(""+elementos.get(i).getOperador());
+               procedimiento.add(""+elementos.get(sigue).getAcumula());
+               /*System.out.println(elementos.get(antes).getAcumula());
                System.out.println(elementos.get(i).getOperador());
-                System.out.println(elementos.get(sigue).getAcumula());
+                System.out.println(elementos.get(sigue).getAcumula());*/
                elementos.get(antes).setAcumula(Math.pow(elementos.get(antes).getAcumula(), elementos.get(sigue).getAcumula()));
                
               
@@ -331,9 +335,12 @@ public class Expresion {
                 
                elementos.get(i).setEvaluado(true);
                elementos.get(sigue).setEvaluado(true);
-               System.out.println(elementos.get(antes).getAcumula());
+               procedimiento.add(""+elementos.get(antes).getAcumula());
+               procedimiento.add(""+elementos.get(i).getOperador());
+               procedimiento.add(""+elementos.get(sigue).getAcumula());
+               /*System.out.println(elementos.get(antes).getAcumula());
                System.out.println(elementos.get(i).getOperador());
-                System.out.println(elementos.get(sigue).getAcumula());
+                System.out.println(elementos.get(sigue).getAcumula());*/
                if(elementos.get(i).getOperador()=='*')
                    elementos.get(antes).setAcumula(elementos.get(antes).getAcumula()*elementos.get(sigue).getAcumula());
                else
@@ -363,9 +370,12 @@ public class Expresion {
                 
                elementos.get(i).setEvaluado(true);
                elementos.get(sigue).setEvaluado(true);
-               System.out.println(elementos.get(antes).getAcumula());
+               procedimiento.add(""+elementos.get(antes).getAcumula());
+               procedimiento.add(""+elementos.get(i).getOperador());
+               procedimiento.add(""+elementos.get(sigue).getAcumula());
+              /* System.out.println(elementos.get(antes).getAcumula());
                System.out.println(elementos.get(i).getOperador());
-                System.out.println(elementos.get(sigue).getAcumula());
+                System.out.println(elementos.get(sigue).getAcumula());*/
                if(elementos.get(i).getOperador()=='+')
                    elementos.get(antes).setAcumula(elementos.get(antes).getAcumula()+elementos.get(sigue).getAcumula());
                else
@@ -383,6 +393,14 @@ public class Expresion {
     public void darValorVariable(char variable, double valor)
     {
         valorVariable[variable-ASCIILETRA]= valor;
+    }
+    
+    public String retornaPasos(){
+        String pasos="";
+        for (int i = 0; i < procedimiento.size(); i++) {
+            pasos=pasos+procedimiento.get(i)+"\n";
+        }
+        return pasos;
     }
     
     public boolean getErrorMatematico()

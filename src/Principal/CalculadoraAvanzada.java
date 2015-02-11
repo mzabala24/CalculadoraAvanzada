@@ -7,6 +7,7 @@
 package Principal;
 
 import Operaciones.Expresion;
+import Vista.Calculadora;
 /**
  *
  * @author Administrator
@@ -18,16 +19,9 @@ public class CalculadoraAvanzada {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Expresion evaluador = new Expresion();
-        String expresion;
-        Double valor;
-        expresion="(((3+4)*5+5)*9/6)^2";
-        evaluador.analizar(expresion);
-        evaluador.darValorVariable('x', 17.912);
-        valor=evaluador.evaluar();
-        if(valor.isNaN())
-        System.out.println("Error Matematico");
-        else            System.out.println("="+valor);
+        Calculadora ca = new Calculadora();
+        ca.setVisible(true);
+        
     }
     
 }
