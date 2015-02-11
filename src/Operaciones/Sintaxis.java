@@ -13,7 +13,7 @@ package Operaciones;
 public class Sintaxis {
     
     //Retira los espacios de la expresión
-    private String sinEspacios(String expresion){
+    public String sinEspacios(String expresion){
         String nueva="";
         int largo, pos;
         char car1;
@@ -37,7 +37,7 @@ public class Sintaxis {
     }
     
     //2. Dos o mas operadores estan seguidos. Ejemplo 2++4,5-*3
-    private boolean dosOperadoresSeguidos(String expresion){
+    public boolean dosOperadoresSeguidos(String expresion){
     
         int largo;
         char char1, char2;
@@ -56,7 +56,7 @@ public class Sintaxis {
     }
     
     //3.Un operador seguido de un parentesis que cierra. Ejemplo: 2-(4+)-7
-    private boolean operadorParentesisCierra(String expresion){
+    public boolean operadorParentesisCierra(String expresion){
        char char1,char2;
        
         for (int i = 0; i <= expresion.length()-2; i++) {
@@ -70,7 +70,7 @@ public class Sintaxis {
     }
     
     //4. Un parentesis que abre seguido de un operador. Ejemplo: 2-(*3)
-    private boolean parentesisOperadorAbre(String expresion){
+    public boolean parentesisOperadorAbre(String expresion){
        char char1,char2;
        
         for (int i = 0; i <=expresion.length()-2; i++) {
@@ -84,19 +84,15 @@ public class Sintaxis {
     }
     
     //5. Que empieze con algun operador
-      private boolean iniciaOperador(String expresion){
+      public boolean iniciaOperador(String expresion){
        char char1;
-       
-        for (int i = 0; i <= expresion.length()-2; i++) {
-            char1=expresion.charAt(i);
+            char1=expresion.charAt(0);
             //Compara el operador
-            
                 if(char1=='+'  || char1=='-' ||char1=='*' ||char1=='/' ||char1=='^') return true;
-        }
         return false;
     }
       //.Que termine con operador. Ejemplo: 12-67*,2/3-
-      private boolean finalizaOperador(String expresion){
+      public boolean finalizaOperador(String expresion){
        char char1;
        
         
@@ -107,7 +103,7 @@ public class Sintaxis {
     }
       
       //7.Que los parentesis esten desbalanceados. Ejemplo: 3-(2*4))
-       private boolean parenctesisDesbalanceados(String expresion){
+       public boolean parenctesisDesbalanceados(String expresion){
        
            char char1;
            int parabre, parcierra;
@@ -124,7 +120,7 @@ public class Sintaxis {
         return false;
        }
 //8.Que haya parentesis vacio.Ejemplo: 2-()*3
-       private boolean parenctesisVacio(String expresion){
+       public boolean parenctesisVacio(String expresion){
        
            char char1,char2;
          
@@ -138,7 +134,7 @@ public class Sintaxis {
        }
        
        //9.Así esten balanceados los parentesis no corresponde el que abre con el que cierra. Ejemplo: 2+3)-2*(4
-       private boolean parentesisBalanceoIncorrecto(String expresion){
+       public boolean parentesisBalanceoIncorrecto(String expresion){
            char char1;
            int balance;
            balance=0;
@@ -154,7 +150,7 @@ public class Sintaxis {
        }
        
        //10.Un parentesis que cierra seguido de un numero. Ejemplo: (12-4)7-1
-       private boolean parentesisNumeroCierra(String expresion){
+       public boolean parentesisNumeroCierra(String expresion){
        char char1,char2;
        
         for (int i = 0; i <=expresion.length()-2; i++) {
@@ -167,7 +163,7 @@ public class Sintaxis {
         return false;
     }
      //  11.Un numero seguido de un parentesis que abre. Ejemplo: 7-2(5-6)
-      private boolean parentesisNumeroAbre(String expresion){
+      public boolean parentesisNumeroAbre(String expresion){
        char char1,char2;
        
         for (int i = 0; i <=expresion.length()-2; i++) {
@@ -181,7 +177,7 @@ public class Sintaxis {
     } 
       
       //12.Doble punto en un numero de tipo real. Ejemplo: 3-2..4+1
-      private boolean doblePuntoNumero(String expression){
+      public boolean doblePuntoNumero(String expression){
           int totalPuntos;
           totalPuntos=0;
           char char1;
@@ -195,9 +191,9 @@ public class Sintaxis {
       }
       
       //13.Un parentesis que cierra seguido de una variable. Ejemplo: (12-4)y-1
-      private boolean parentesisCierraVariable(String expression){
+      public boolean parentesisCierraVariable(String expression){
           char char1,char2;
-          for (int i = 0; i <= expression.length()-1; i++) {
+          for (int i = 0; i <= expression.length()-2; i++) {
               char1= expression.charAt(i);
               char2= expression.charAt(i+1);
               if(char1==')')
@@ -206,7 +202,7 @@ public class Sintaxis {
           return false;
       }
       //14.Una variable seguida de un punto: 4-z.1+3
-       private boolean variableLuegoPunto (String expression){
+       public boolean variableLuegoPunto (String expression){
           char char1,char2;
           for (int i = 0; i <= expression.length()-2; i++) {
               char1= expression.charAt(i);
@@ -217,7 +213,7 @@ public class Sintaxis {
           return false;
       }
       //15.Un punto seguida de una variable. Ejemplo 7-2.p+1
-       private boolean puntoLuegoVariable(String expression){
+       public boolean puntoLuegoVariable(String expression){
           char char1,char2;
           for (int i = 0; i <= expression.length()-2; i++) {
               char1= expression.charAt(i);
@@ -228,39 +224,39 @@ public class Sintaxis {
           return false;
       }
        //16.Un numero antes de una variable
-        private boolean numeroAntesVariable(String expression){
+        public boolean numeroAntesVariable(String expression){
           char char1,char2;
           for (int i = 0; i <= expression.length()-2; i++) {
               char1= expression.charAt(i);
               char2= expression.charAt(i+1);
-              if(char1>='0' && char2 <='9')
+              if(char1>='0' && char1 <='9')
               if(char2>='a' && char2<='z') return true;
           }
           return false;
       }
     //17.Un numero despues de una variable. Ejemplo: x21+4
-         private boolean variableDespuesNumero(String expression){
+         public boolean variableDespuesNumero(String expression){
           char char1,char2;
           for (int i = 0; i <= expression.length()-2; i++) {
               char1= expression.charAt(i);
               char2= expression.charAt(i+1);
-              if(char1>='a' && char2<='z')
+              if(char1>='a' && char1<='z')
               if(char2>='0' && char2<='9') return true;
           }
           return false;
       }
          
     //18.Haya caracteres invalidos
-         private boolean caracterInvalido(String expresion){
+         public boolean caracterInvalido(String expresion){
              String caractervalido="abcdefghijklmnopqrstuvwxyz0123456789.+-*/^()";
              char char1,char2;
              boolean caracterInvalido;
              for (int i = 0; i <= expresion.length()-1; i++) {
                  char1 = expresion.charAt(i);
                  caracterInvalido=true;
-                 for (int j = 0; j < caractervalido.length()-1; j++) {
+                 for (int j = 0; j <= caractervalido.length()-1; j++) {
                      char2= caractervalido.charAt(j);
-                     if(char1==char2) caracterInvalido=true;
+                     if(char1==char2) caracterInvalido=false;
                  }
                  if(caracterInvalido)return true;
              }
@@ -268,7 +264,7 @@ public class Sintaxis {
          }
          //19.Verifica si hay 4 o mas variables seguidas
          
-         private boolean verificaCuatroLetras(String expresion){
+         public boolean verificaCuatroLetras(String expresion){
              char char1,char2,char3,char4;
              for (int i = 0; i <= expresion.length()-4; i++) {
                  char1=expresion.charAt(i);
@@ -283,7 +279,7 @@ public class Sintaxis {
          
          //20.Si detecta tres letras seguidas y luego un paréntesis que abre, entonces verifica si es función o no
          
-         private boolean funcionInvalida(String expresion){
+         public boolean funcionInvalida(String expresion){
              
              boolean chequeaFuncion;
              char char1,char2,char3,char4;
@@ -309,7 +305,7 @@ public class Sintaxis {
              return false;
          }
          
-         private boolean esUnaFuncion(char char1,char char2, char char3){
+         public boolean esUnaFuncion(char char1,char char2, char char3){
              String listaFunciones;
              char listfunc1,listfunc2,listfunc3;
             listaFunciones="sinsencostanabslogexpsqrrcb";
@@ -325,7 +321,7 @@ public class Sintaxis {
          
          //21.Si detecta solo dos letras seguidas es un error. Ejemplo 4+tk+8.9
          
-         private boolean variableInvalida(String expression){
+         public boolean variableInvalida(String expression){
              int cuentaletras=0;
              char char1;
              
@@ -343,7 +339,7 @@ public class Sintaxis {
          }
          
          //22.Antes de parentesis hay una letra
-         private boolean variableParentesisAbre(String expression){
+         public boolean variableParentesisAbre(String expression){
              int cuentaletras=0;
              char char1;
              

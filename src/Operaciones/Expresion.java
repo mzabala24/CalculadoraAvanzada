@@ -231,6 +231,7 @@ public class Expresion {
             
             if(elementos.get(i).getNivel()==evaluaNivel && elementos.get(i).getTipo()==ESFUNCION)
             {
+                
                 switch(elementos.get(i).getFuncion())
                 {
                     case 1:
@@ -297,10 +298,11 @@ public class Expresion {
         
         for (int i = 0; i < totalElementos; i++) {
             
-        //System.out.println(elementos.get(i).getAcumula());
+       
             /*Si encuentra un nodo del tipo operador y es exponente*/
             if(elementos.get(i).getNivel()==evaluaNivel && elementos.get(i).getTipo()==ESOPERADOR && elementos.get(i).getOperador()=='^')
             {
+                
                 
                 for (antes=i-1;elementos.get(antes).isEvaluado(); antes--);
                 
@@ -308,10 +310,12 @@ public class Expresion {
                 
                elementos.get(i).setEvaluado(true);
                elementos.get(sigue).setEvaluado(true);
-               
+               System.out.println(elementos.get(antes).getAcumula());
+               System.out.println(elementos.get(i).getOperador());
+                System.out.println(elementos.get(sigue).getAcumula());
                elementos.get(antes).setAcumula(Math.pow(elementos.get(antes).getAcumula(), elementos.get(sigue).getAcumula()));
                
-               //System.out.println(elementos.get(i).getOperador());
+              
                
             }
         }
@@ -320,19 +324,22 @@ public class Expresion {
             // System.out.println(elementos.get(i).getAcumula());
             if(elementos.get(i).getNivel()==evaluaNivel && elementos.get(i).getTipo()==ESOPERADOR && (elementos.get(i).getOperador()=='*' || elementos.get(i).getOperador()=='/'))
             {
+              
                 for (antes=i-1;elementos.get(antes).isEvaluado(); antes--);
                 
                 for (sigue=i+1;elementos.get(sigue).isEvaluado(); sigue++);
                 
                elementos.get(i).setEvaluado(true);
                elementos.get(sigue).setEvaluado(true);
-               
+               System.out.println(elementos.get(antes).getAcumula());
+               System.out.println(elementos.get(i).getOperador());
+                System.out.println(elementos.get(sigue).getAcumula());
                if(elementos.get(i).getOperador()=='*')
                    elementos.get(antes).setAcumula(elementos.get(antes).getAcumula()*elementos.get(sigue).getAcumula());
                else
                {
                    /*Validamos la division sobre 0*/
-                   if(elementos.get(sigue).getAcumula() !=0)
+                   if(elementos.get(sigue).getAcumula()!=0)
                        elementos.get(antes).setAcumula(elementos.get(antes).getAcumula()/elementos.get(sigue).getAcumula());
                    else
                    {
@@ -340,30 +347,32 @@ public class Expresion {
                        return 0;
                    }
                }
-               //System.out.println(elementos.get(i).getOperador());
             }
         }
         
         /*Recorremos toda la lista*/
         for (int i = 0; i < totalElementos; i++) {
-             //System.out.println(elementos.get(i).getAcumula());
+            
             /*si encuentra un nodo del tipo operador y es suma o resta*/
             if(elementos.get(i).getNivel()==evaluaNivel && elementos.get(i).getTipo()==ESOPERADOR && (elementos.get(i).getOperador()=='+' || elementos.get(i).getOperador()=='-'))
             {
+                
                 for (antes=i-1;elementos.get(antes).isEvaluado(); antes--);
                 
                 for (sigue=i+1;elementos.get(sigue).isEvaluado(); sigue++);
                 
                elementos.get(i).setEvaluado(true);
                elementos.get(sigue).setEvaluado(true);
-               
+               System.out.println(elementos.get(antes).getAcumula());
+               System.out.println(elementos.get(i).getOperador());
+                System.out.println(elementos.get(sigue).getAcumula());
                if(elementos.get(i).getOperador()=='+')
                    elementos.get(antes).setAcumula(elementos.get(antes).getAcumula()+elementos.get(sigue).getAcumula());
                else
                   elementos.get(antes).setAcumula(elementos.get(antes).getAcumula()-elementos.get(sigue).getAcumula()); 
                
                 }
-            System.out.println(elementos.get(i).getOperador());
+           // System.out.println(elementos.get(antes).getAcumula());
             }
         }    
         /*Resultado de la expresion*/
